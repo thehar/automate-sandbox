@@ -2,6 +2,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define :chef_server do |chef_server_config|
       chef_server_config.vm.box = 'bento/ubuntu-16.04'
+      chef_server_config.vm.synced_folder ".", "/opt/a2-testing", create: true
       chef_server_config.vm.hostname = 'chef-server.test'
       chef_server_config.vm.network :private_network, ip: '192.168.33.198'
       chef_server_config.vm.network 'forwarded_port', guest: 80, host: 8080
@@ -22,5 +23,6 @@ Vagrant.configure(2) do |config|
     automate_config.vm.provision "shell", inline: "apt-get update && apt-get install -y unzip"
     automate_config.vm.provision "shell", inline: "sysctl -w vm.max_map_count=262144"
     automate_config.vm.provision "shell", inline: "sysctl -w vm.dirty_expire_centisecs=20000"
+    automate_config.vm.provision :shell, path: "scripts/install-automate.sh"
   end
 end
