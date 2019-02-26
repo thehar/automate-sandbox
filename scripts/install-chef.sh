@@ -19,8 +19,8 @@ mkdir /home/vagrant/certs
 
 chef-server-ctl reconfigure
 printf "\033c"
-chef-server-ctl user-create upwork Automate Lab automate@labz.com password --filename /home/vagrant/certs/upwork.pem
-chef-server-ctl org-create upwork "Upwork Automate Lab" --association_user upwork --filename /home/vagrant/certs/upworkorg.pem
+chef-server-ctl user-create fancy Automate Lab automate@labz.com password --filename /home/vagrant/certs/fancy.pem
+chef-server-ctl org-create fancyorg "Automate Lab" --association_user fancy --filename /home/vagrant/certs/fancyorg.pem
 chef-server-ctl install chef-manage
 chef-server-ctl reconfigure
 chef-manage-ctl reconfigure --accept-license
